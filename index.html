@@ -245,7 +245,7 @@ var xValues = [];
 var payoutValues = [];
 var folderValues = [];
 	
-let infoTableArray = [];
+var infoTableArray = [];
 d3.csv("scrapes/totals.csv", function(data) {
 	for (var i = 1; i < data.length; i++) {
 		infoTableArray.push(data[i]);
