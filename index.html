@@ -228,7 +228,7 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 			var row = document.createElement('tr');
 			row.setAttribute("id", "myTr" + i);
 			document.getElementById(elementid).appendChild(row);
-			for(var j = 0; j < array[i].length; j++){
+			for(var j = 1; j < array[i].length; j++){
 				var cell = document.createElement('td');
 				var content = document.createTextNode(array[i][j]);
 				cell.appendChild(content);
