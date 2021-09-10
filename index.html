@@ -138,7 +138,7 @@ d3.csv("scrapes/latest.csv", function(data) { //changing to latest
 	}
 });
 
-d4.csv("scrapes/totals.csv", function(data) {
+d3.csv("scrapes/totals.csv", function(data) {
 	for (var i = 1; i < data.length; i++) {
 		Everything.push(infoTableArray[i]);
 	}
