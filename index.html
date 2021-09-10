@@ -138,13 +138,7 @@ d3.csv("scrapes/latest.csv", function(data) { //changing to latest
 	}
 });
 
-let infoTableArray = [];
-d3.csv("scrapes/totals.csv", function(data) {
-	for (var i = 1; i < data.length; i++) {
-		infoTableArray.push(data[i]);
-	}
 
-});
 
 let pendingPointsElement = document.getElementById("pendingpoints");
 let banPriceElement = document.getElementById("banprice");
@@ -250,11 +244,21 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 var xValues = [];
 var payoutValues = [];
 var folderValues = [];
-for(var i = 0; i <= 60; i++){
+	
+let infoTableArray = [];
+d3.csv("scrapes/totals.csv", function(data) {
+	for (var i = 1; i < data.length; i++) {
+		infoTableArray.push(data[i]);
+	}
+	
+	for(var i = 0; i <= 60; i++){
 	xValues.push(infoTableArray[i][0]);
 	payoutValues.push(infoTableArray[i][1]);
 	folderValues.push(infoTableArray[i][2]);
-}
+	}
+
+});
+
 
 xValues = xValues.reverse();
 payoutValues = payoutValues.reverse();
