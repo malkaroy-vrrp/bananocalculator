@@ -257,10 +257,8 @@ d3.csv("scrapes/totals.csv", function(data) {
 	folderValues.push(infoTableArray[i]['Total_Folders']);
 	}
 
-});
-
-
-xValues = xValues.reverse();
+	
+	xValues = xValues.reverse();
 payoutValues = payoutValues.reverse();
 folderValues = folderValues.reverse();
 
@@ -296,6 +294,10 @@ new Chart("myChart", {
     }
   }
 });
+});
+
+
+
 </script>
 </body>
 </html>
