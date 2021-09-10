@@ -138,6 +138,7 @@ d3.csv("scrapes/latest.csv", function(data) { //changing to latest
 	}
 });
 
+let infoTableArray = [];
 d3.csv("scrapes/totals.csv", function(data) {
 	for (var i = 1; i < data.length; i++) {
 		Everything.push(infoTableArray[i]);
