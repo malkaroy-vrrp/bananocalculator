@@ -230,15 +230,10 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 			document.getElementById(elementid).appendChild(row);
 			
 			var cell = document.createElement('td');
-			var content = document.createTextNode(array[i]['Fold_date']);
-			cell.appendChild(content);
-			cell = document.createElement('td');
-			content = document.createTextNode(array[i]['Total_points']);
-			cell.appendChild(content);
-			cell = document.createElement('td');
-			content = document.createTextNode(array[i]['Total_Folders']);
-			cell.appendChild(content);
-			
+			cell.appendChild(document.createTextNode(array[i]['Fold_date']));
+			cell.appendChild(document.createTextNode(array[i]['Total_points']));
+			cell.appendChild(document.createTextNode(array[i]['Total_Folders']));
+			document.getElementById("myTr" + i).appendChild(cell);
 		};
 	};
 	
