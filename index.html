@@ -231,7 +231,11 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 			
 			var cell = document.createElement('td');
 			cell.appendChild(document.createTextNode(array[i]['Fold_date']));
+			document.getElementById("myTr" + i).appendChild(cell);
+			var cell = document.createElement('td');
 			cell.appendChild(document.createTextNode(array[i]['Total_points']));
+			document.getElementById("myTr" + i).appendChild(cell);
+			var cell = document.createElement('td');
 			cell.appendChild(document.createTextNode(array[i]['Total_Folders']));
 			document.getElementById("myTr" + i).appendChild(cell);
 		};
