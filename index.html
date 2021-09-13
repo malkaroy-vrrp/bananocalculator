@@ -122,6 +122,31 @@
 
 <script>
 
+//makes an HTML table from the array
+function createTable(array, elementid) {
+	var Table = document.getElementById(elementid);
+	Table.innerHTML = "";
+	for(var i = 0; i < array.length ; i++){
+		var row = document.createElement('tr');
+		row.setAttribute("id", "myTr" + i);
+		document.getElementById(elementid).appendChild(row);
+		
+		var cell = document.createElement('td');
+		cell.appendChild(document.createTextNode(array[i]['Fold_date']));
+		document.getElementById("myTr" + i).appendChild(cell);
+		var cell = document.createElement('td');
+		cell.appendChild(document.createTextNode(array[i]['Total_points']));
+		document.getElementById("myTr" + i).appendChild(cell);
+		var cell = document.createElement('td');
+		cell.appendChild(document.createTextNode(array[i]['Total_Folders']));
+		document.getElementById("myTr" + i).appendChild(cell);
+	};
+};
+
+function addressToClipboard(){
+	var promise = navigator.clipboard.writeText('ban_3r7xbz8u5wj4wgkhmojzq6mmiq7ekawtarnfgwsneeck8ktn6zy58ax3ejkn');
+};
+
 let Everything = [];
 
 d3.csv("scrapes/latest.csv", function(data) { //changing to latest
@@ -231,33 +256,10 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 	} else {
 		document.getElementById("text").innerHTML = "All numbers displayed are for one payout. Payouts occur at noon and midnight UTC.";
 	}
-
-
-//makes an HTML table from the array
-	function createTable(array, elementid) {
-		var Table = document.getElementById(elementid);
-		Table.innerHTML = "";
-		for(var i = 0; i < array.length ; i++){
-			var row = document.createElement('tr');
-			row.setAttribute("id", "myTr" + i);
-			document.getElementById(elementid).appendChild(row);
-			
-			var cell = document.createElement('td');
-			cell.appendChild(document.createTextNode(array[i]['Fold_date']));
-			document.getElementById("myTr" + i).appendChild(cell);
-			var cell = document.createElement('td');
-			cell.appendChild(document.createTextNode(array[i]['Total_points']));
-			document.getElementById("myTr" + i).appendChild(cell);
-			var cell = document.createElement('td');
-			cell.appendChild(document.createTextNode(array[i]['Total_Folders']));
-			document.getElementById("myTr" + i).appendChild(cell);
-		};
-	};
-	
-	function addressToClipboard(){
-		var promise = navigator.clipboard.writeText('ban_3r7xbz8u5wj4wgkhmojzq6mmiq7ekawtarnfgwsneeck8ktn6zy58ax3ejkn');
-	};
 }
+
+
+
 var xValues = [];
 var payoutValues = [];
 var folderValues = [];
