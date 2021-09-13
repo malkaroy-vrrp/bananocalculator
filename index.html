@@ -163,20 +163,7 @@ d3.csv("scrapes/latest.csv", function(data) { //changing to latest
 	}
 });
 
-var infoTableArray = [];
-d3.csv("scrapes/totals.csv", function(data) {
-	for (var i = 0; i < data.length; i++) {
-		infoTableArray.push(data[i]);
-	}
-	
-	for(var i = 0; i <= 60; i++){
-	xValues.push(infoTableArray[i]['Fold_date']);
-	payoutValues.push(infoTableArray[i]['Total_points']);
-	folderValues.push(infoTableArray[i]['Total_Folders']);
-	}
 
-	
-	xValues = xValues.reverse();
 
 let pendingPointsElement = document.getElementById("pendingpoints");
 let banPriceElement = document.getElementById("banprice");
@@ -264,6 +251,20 @@ var xValues = [];
 var payoutValues = [];
 var folderValues = [];
 	
+var infoTableArray = [];
+d3.csv("scrapes/totals.csv", function(data) {
+	for (var i = 0; i < data.length; i++) {
+		infoTableArray.push(data[i]);
+	}
+	
+	for(var i = 0; i <= 60; i++){
+	xValues.push(infoTableArray[i]['Fold_date']);
+	payoutValues.push(infoTableArray[i]['Total_points']);
+	folderValues.push(infoTableArray[i]['Total_Folders']);
+	}
+
+	
+xValues = xValues.reverse();
 
 payoutValues = payoutValues.reverse();
 folderValues = folderValues.reverse();
