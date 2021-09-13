@@ -98,7 +98,7 @@ else:
 dateOfFold = datetime(currentDate.year, currentDate.month, currentDate.day, hour)
 timeShift =  time.mktime(datetime.now().timetuple()) - time.mktime(datetime.utcnow().timetuple()) #manually implement timezone shift since mktime only accepts local time
 dateOfFoldUnix = time.mktime(dateOfFold.timetuple()) + timeShift
-print("Querying for Payout on", dateOfFold)
+print("Querying for Payout on", dateOfFold.strftime("%d-%b-%Y %H UTC"))
 account = "ban_3fo1d1ng6mfqumfoojqby13nahaugqbe5n6n3trof4q8kg5amo9mribg4muo"
 
 tempjson = ban.account_history(account, numberToGet)    
@@ -107,7 +107,7 @@ while True:
     transactionCount = 0
     listOfFolders = []
     for transaction in tempjson['history']:
-        if transaction['local_timestamp'] > dateOfFoldUnix and transaction['type'] == 'send':
+        if transaction['local_timestamp'] > dateOfFoldUnix and transaction['type'] == 'send' : #adding logic to ignore future folds here
             listOfFolders.append(addressToUserDict[transaction['account']])
             transactionCount += 1
     if tempjson['history'][-1]['local_timestamp']  < dateOfFoldUnix:
@@ -158,7 +158,7 @@ for chunk in chunks:
                 while len(dateString) < 26:
                     dateString += "0"
                 payoutTime = datetime.fromisoformat(dateString)
-                if payoutTime > dateOfFold:
+                if payoutTime > dateOfFold: #I think this is where I would change it
                     total_payout = 0
                     for payout in user['payments']:
                         total_payout += payout['amount']
@@ -195,8 +195,22 @@ except Exception as e:
     print(e)
     pass
 
-print("Outputting folders to file " + outputFilename)
-with open(outputFilename, 'w', newline='') as myFile:
+print("Outputting totals to file totals.csv" )
+toAdd = [str(dateOfFold.strftime("%d-%b-%Y %H UTC")), round(BANsum, 2),len(masterList)]
+with open('totals.csv', "r") as infile:
+    reader = list(csv.reader(infile))
+    reader.insert(1, toAdd)
+    
+with open('totals.csv', "w") as outfile:
+    writer = csv.writer(outfile)
+    for line in reader:
+        writer.writerow(line)
+    infile.close()
+    outfile.close()
+
+
+print("Outputting folders to file latest.csv")
+with open('latest.csv', 'w', newline='') as myFile:
     writer = csv.writer(myFile)
     for entry in masterList:
         writer.writerow(entry)
