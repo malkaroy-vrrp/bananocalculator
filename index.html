@@ -252,6 +252,12 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 }
 
 
+let infoTableArray = [];
+d3.csv("scrapes/totals.csv", function(data) {
+	for (var i = 0; i < data.length; i++) {
+		infoTableArray.push(data[i]);
+	}
+});
 
 var xValues = [];
 var payoutValues = [];
@@ -263,12 +269,6 @@ for(var i = 0; i <= 60; i++){
 }
 	
 
-let infoTableArray = [];
-d3.csv("scrapes/totals.csv", function(data) {
-	for (var i = 0; i < data.length; i++) {
-		infoTableArray.push(data[i]);
-	}
-});
 	
 xValues = xValues.reverse();
 payoutValues = payoutValues.reverse();
