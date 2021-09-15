@@ -22,8 +22,8 @@
 	<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 	</script>
+<body onload="loadCSV()">
 <body onload="createTable(infoTableArray, 'infoTable')">
-
 <div class="container-fluid" style="width:90%;">
 	<div class="row">
 		<div class="col-sm-8">
@@ -143,6 +143,18 @@ function createTable(array, elementid) {
 	};
 };
 
+var infoTableArray = [];
+
+function loadCSV() {
+
+	d3.csv("scrapes/totals.csv", function(data) {
+		for (var i = 0; i < data.length; i++) {
+			infoTableArray.push(data[i]);
+		}
+	});
+
+};
+
 function addressToClipboard(){
 	var promise = navigator.clipboard.writeText('ban_3r7xbz8u5wj4wgkhmojzq6mmiq7ekawtarnfgwsneeck8ktn6zy58ax3ejkn');
 };
@@ -163,12 +175,7 @@ d3.csv("scrapes/latest.csv", function(data) { //changing to latest
 	}
 });
 
-var infoTableArray = [];
-d3.csv("scrapes/totals.csv", function(data) {
-	for (var i = 0; i < data.length; i++) {
-		infoTableArray.push(data[i]);
-	}
-});
+
 
 let pendingPointsElement = document.getElementById("pendingpoints");
 let banPriceElement = document.getElementById("banprice");
