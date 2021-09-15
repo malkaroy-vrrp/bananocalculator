@@ -123,6 +123,12 @@
 
 //makes an HTML table from the array
 function createTable(array, elementid) {
+	let infoTableArray = [];
+	d3.csv("scrapes/totals.csv", function(data) {
+		for (var i = 0; i < data.length; i++) {
+			infoTableArray.push(data[i]);
+		}
+	});
 	var Table = document.getElementById(elementid);
 	Table.innerHTML = "";
 	for(var i = 0; i < array.length ; i++){
@@ -141,17 +147,6 @@ function createTable(array, elementid) {
 		document.getElementById("myTr" + i).appendChild(cell);
 	};
 };
-
-var infoTableArray = [];
-
-
-
-d3.csv("scrapes/totals.csv", function(data) {
-	for (var i = 0; i < data.length; i++) {
-		infoTableArray.push(data[i]);
-	}
-});
-
 
 
 function addressToClipboard(){
@@ -268,7 +263,12 @@ for(var i = 0; i <= 60; i++){
 }
 	
 
-
+let infoTableArray = [];
+d3.csv("scrapes/totals.csv", function(data) {
+	for (var i = 0; i < data.length; i++) {
+		infoTableArray.push(data[i]);
+	}
+});
 	
 xValues = xValues.reverse();
 payoutValues = payoutValues.reverse();
