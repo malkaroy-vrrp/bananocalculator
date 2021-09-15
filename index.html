@@ -22,7 +22,6 @@
 	<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 	</script>
-<body onload="loadCSV()">
 <body onload="createTable(infoTableArray, 'infoTable')">
 <div class="container-fluid" style="width:90%;">
 	<div class="row">
@@ -145,15 +144,15 @@ function createTable(array, elementid) {
 
 var infoTableArray = [];
 
-function loadCSV() {
 
-	d3.csv("scrapes/totals.csv", function(data) {
-		for (var i = 0; i < data.length; i++) {
-			infoTableArray.push(data[i]);
-		}
-	});
 
-};
+d3.csv("scrapes/totals.csv", function(data) {
+	for (var i = 0; i < data.length; i++) {
+		infoTableArray.push(data[i]);
+	}
+});
+
+
 
 function addressToClipboard(){
 	var promise = navigator.clipboard.writeText('ban_3r7xbz8u5wj4wgkhmojzq6mmiq7ekawtarnfgwsneeck8ktn6zy58ax3ejkn');
