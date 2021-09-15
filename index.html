@@ -252,61 +252,61 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 }
 
 
-var infoTableArray = [];
+let infoTableArray = [];
 d3.csv("scrapes/totals.csv", function(data) {
 	for (var i = 0; i < data.length; i++) {
 		infoTableArray.push(data[i]);
 	}
+
+
+	var xValues = [];
+	var payoutValues = [];
+	var folderValues = [];
+	for(var i = 0; i <= 60; i++){
+		xValues.push(infoTableArray[i]['Fold_date']);
+		payoutValues.push(infoTableArray[i]['Total_points']);
+		folderValues.push(infoTableArray[i]['Total_Folders']);
+	}
+		
+
+		
+	xValues = xValues.reverse();
+	payoutValues = payoutValues.reverse();
+	folderValues = folderValues.reverse();
+
+	new Chart("myChart", {
+	type: 'line',
+	data: {
+		labels: xValues,
+		datasets: [{
+		label: 'BAN Distributed',
+		yAxisID: 'A',
+		data: payoutValues,
+		borderColor: "yellow",
+		fill: true
+		}, {
+		label: 'Number of Folders',
+		yAxisID: 'B',
+		data: folderValues,
+		borderColor: "orange",
+		fill: true
+		}]
+	},
+	options: {
+		scales: {
+		yAxes: [{
+			id: 'A',
+			type: 'linear',
+			position: 'left',
+		}, {
+			id: 'B',
+			type: 'linear',
+			position: 'right'
+		}]
+		}
+	}
+	});
 });
-
-var xValues = [];
-var payoutValues = [];
-var folderValues = [];
-for(var i = 0; i <= 60; i++){
-	xValues.push(infoTableArray[i]['Fold_date']);
-	payoutValues.push(infoTableArray[i]['Total_points']);
-	folderValues.push(infoTableArray[i]['Total_Folders']);
-}
-	
-
-	
-xValues = xValues.reverse();
-payoutValues = payoutValues.reverse();
-folderValues = folderValues.reverse();
-
-new Chart("myChart", {
-  type: 'line',
-  data: {
-    labels: xValues,
-    datasets: [{
-      label: 'BAN Distributed',
-      yAxisID: 'A',
-      data: payoutValues,
-	  borderColor: "yellow",
-      fill: true
-    }, {
-      label: 'Number of Folders',
-      yAxisID: 'B',
-      data: folderValues,
-	  borderColor: "orange",
-      fill: true
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        id: 'A',
-        type: 'linear',
-        position: 'left',
-      }, {
-        id: 'B',
-        type: 'linear',
-        position: 'right'
-      }]
-    }
-  }
-});
-
 
 
 
