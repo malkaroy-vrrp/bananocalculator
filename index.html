@@ -224,7 +224,7 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 //makes an HTML table from the array
 function createTable( elementid) {
 	//let infoTableArray = [];
-	d3.csv('scrape/totals.csv', function(error, infoTableArray) {
+	d3.csv('scrapes/totals.csv', function(error, infoTableArray) {
 		// If error is not null, something went wrong.
 		if (error) {
 			console.log(error);  //Log the error.
