@@ -224,12 +224,16 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 //makes an HTML table from the array
 function createTable( elementid) {
 	//let infoTableArray = [];
-	d3.csv('scrapes/totals.csv', function(error, infoTableArray) {
+	d3.csv('scrapes/totals.csv', function(error, infoTableArrayRAW) {
 		// If error is not null, something went wrong.
 		if (error) {
 			console.log(error);  //Log the error.
 		} else {
 			//Call some other functions that generate the visualization
+			var infoTableArray = [];
+			for(var i = 0; i < infoTableArray.length ; i++){
+				infoTableArray.push([infoTableArrayRAW[i]['Fold_date'],infoTableArrayRAW[i]['Total_points'],infoTableArrayRAW[i]['Total_Folders']])
+			};
 			var Table = document.getElementById(elementid);
 			Table.innerHTML = "";
 			for(var i = 0; i < infoTableArray.length ; i++){
