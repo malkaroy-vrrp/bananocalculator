@@ -123,12 +123,12 @@
 
 //makes an HTML table from the array
 function createTable(array, elementid) {
-	let infoTableArray = [];
+	/*let infoTableArray = [];
 	d3.csv("scrapes/totals.csv", function(data) {
 		for (var i = 0; i < data.length; i++) {
 			infoTableArray.push(data[i]);
 		}
-	});
+	});*/
 	var Table = document.getElementById(elementid);
 	Table.innerHTML = "";
 	for(var i = 0; i < array.length ; i++){
@@ -169,7 +169,18 @@ d3.csv("scrapes/latest.csv", function(data) { //changing to latest
 	}
 });
 
+let infoTableArray = [];
 
+d3.csv("scrapes/totals.csv", function(error, data) {
+    // If error is not null, something went wrong.
+    if (error) {
+          console.log(error);  //Log the error.
+    } else {
+          //console.log(data);   //Log the data.
+          infoTableArray = data; // Give the data a global scope
+          //Call some other functions that generate the visualization
+    }
+});
 
 let pendingPointsElement = document.getElementById("pendingpoints");
 let banPriceElement = document.getElementById("banprice");
@@ -251,7 +262,7 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 	}
 }
 
-
+/*
 let infoTableArray = [];
 d3.csv("scrapes/totals.csv", function(data) {
 	for (var i = 0; i < data.length; i++) {
@@ -267,14 +278,14 @@ d3.csv("scrapes/totals.csv", function(data) {
 		payoutValues.push(infoTableArray[i]['Total_points']);
 		folderValues.push(infoTableArray[i]['Total_Folders']);
 	}
-		
+*/		
 
 		
-	xValues = xValues.reverse();
-	payoutValues = payoutValues.reverse();
-	folderValues = folderValues.reverse();
+xValues = xValues.reverse();
+payoutValues = payoutValues.reverse();
+folderValues = folderValues.reverse();
 
-	new Chart("myChart", {
+new Chart("myChart", {
 	type: 'line',
 	data: {
 		labels: xValues,
@@ -305,8 +316,8 @@ d3.csv("scrapes/totals.csv", function(data) {
 		}]
 		}
 	}
-	});
 });
+//});
 
 
 
