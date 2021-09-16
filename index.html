@@ -22,7 +22,7 @@
 	<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 	</script>
-<body onload="createTable( 'infoTable')">
+<body onload="createTable('infoTable')">
 
 <div class="container-fluid" style="width:90%;">
 	<div class="row">
@@ -207,7 +207,7 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 		floorOutput = floorOutput * 2;
 	}
 	
-	createTable(withinRangeArray, 'payoutTable')
+	createPayTable(withinRangeArray, 'payoutTable')
 	document.getElementById("averageOutput").innerHTML = averageOutput.toFixed(2) + " BAN";
 	document.getElementById("medianOutput").innerHTML = medianOutput.toFixed(2) + " BAN";
 	document.getElementById("roofOutput").innerHTML = roofOutput.toFixed(2) + " BAN";
@@ -222,6 +222,22 @@ function updateValuesInternal(pointsMode, pendingPoints) {
 }
 
 //makes an HTML table from the array
+function createPayTable(array, elementid) {
+        
+		var Table = document.getElementById(elementid);
+		Table.innerHTML = "";
+		for(var i = 0; i < array.length ; i++){
+			var row = document.createElement('tr');
+			row.setAttribute("id", "myTr" + i);
+			document.getElementById(elementid).appendChild(row);
+			for(var j = 0; j < array[i].length; j++){
+				var cell = document.createElement('td');
+				var content = document.createTextNode(array[i][j]);
+				cell.appendChild(content);
+				document.getElementById("myTr" + i).appendChild(cell);
+			};
+		};
+	};
 function createTable( elementid) {
 	//let infoTableArray = [];
 	d3.csv('scrapes/totals.csv', function(error, infoTableArrayRAW) {
