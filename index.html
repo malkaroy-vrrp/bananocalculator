@@ -270,17 +270,17 @@ d3.csv("scrapes/totals.csv", function(data) {
 	}
 
 
-	var xValues = [];
-	var payoutValues = [];
-	var folderValues = [];
-	for(var i = 0; i <= 60; i++){
-		xValues.push(infoTableArray[i]['Fold_date']);
-		payoutValues.push(infoTableArray[i]['Total_points']);
-		folderValues.push(infoTableArray[i]['Total_Folders']);
-	}
+
 */		
 
-		
+var xValues = [];
+var payoutValues = [];
+var folderValues = [];
+for(var i = 0; i <= 60; i++){
+	xValues.push(infoTableArray[i]['Fold_date']);
+	payoutValues.push(infoTableArray[i]['Total_points']);
+	folderValues.push(infoTableArray[i]['Total_Folders']);
+}
 xValues = xValues.reverse();
 payoutValues = payoutValues.reverse();
 folderValues = folderValues.reverse();
