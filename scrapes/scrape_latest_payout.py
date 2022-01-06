@@ -113,7 +113,7 @@ except Exception as e:
     pass
 
 print("Outputting totals to file totals.csv" )
-toAdd = [str(dateOfFold.strftime("%d-%b-%Y %H UTC")), round(BANsum, 2),len(masterList)]
+toAdd = [str(dateOfFold.strftime("%d-%b-%Y %H UTC")), round(BANsum, 2),len(masterList)-1]
 with open('totals.csv', "r") as infile:
     reader = list(csv.reader(infile))
     reader.insert(1, toAdd)
@@ -125,10 +125,12 @@ with open('totals.csv', "w") as outfile:
     infile.close()
     outfile.close()
 
-
-print("Outputting folders to file latest.csv")
-with open('latest.csv', 'w', newline='') as myFile:
-    writer = csv.writer(myFile)
-    for entry in masterList:
-        writer.writerow(entry)
-    myFile.close()
+if len(masterList)>1:
+  print("Outputting folders to file latest.csv")
+  with open('latest.csv', 'w', newline='') as myFile:
+      writer = csv.writer(myFile)
+      for entry in masterList:
+          writer.writerow(entry)
+      myFile.close()
+else:
+  print("No Payout")
